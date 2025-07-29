@@ -128,6 +128,29 @@ define("UsrRealty_FormPage", /**SCHEMA_DEPS*/["@creatio-devkit/common"]/**SCHEMA
 			},
 			{
 				"operation": "insert",
+				"name": "NumberInput_6wfrdlc",
+				"values": {
+					"layoutConfig": {
+						"column": 1,
+						"colSpan": 1,
+						"row": 4,
+						"rowSpan": 1
+					},
+					"type": "crt.NumberInput",
+					"label": "$Resources.Strings.PDS_UsrComission_3leezdx",
+					"labelPosition": "auto",
+					"control": "$PDS_UsrComission_3leezdx",
+					"visible": true,
+					"readonly": true,
+					"placeholder": "",
+					"tooltip": ""
+				},
+				"parentName": "SideAreaProfileContainer",
+				"propertyName": "items",
+				"index": 3
+			},
+			{
+				"operation": "insert",
 				"name": "Type",
 				"values": {
 					"layoutConfig": {
@@ -233,6 +256,28 @@ define("UsrRealty_FormPage", /**SCHEMA_DEPS*/["@creatio-devkit/common"]/**SCHEMA
 				"parentName": "GeneralInfoTabContainer",
 				"propertyName": "items",
 				"index": 2
+			},
+			{
+				"operation": "insert",
+				"name": "CommissionPercent",
+				"values": {
+					"layoutConfig": {
+						"column": 2,
+						"colSpan": 1,
+						"row": 3,
+						"rowSpan": 1
+					},
+					"type": "crt.NumberInput",
+					"label": "$Resources.Strings.PDS_UsrOfferTypeUsrCommissionPercent_5cni0sl",
+					"control": "$PDS_UsrOfferTypeUsrCommissionPercent_5cni0sl",
+					"readonly": true,
+					"placeholder": "",
+					"labelPosition": "auto",
+					"tooltip": ""
+				},
+				"parentName": "GeneralInfoTabContainer",
+				"propertyName": "items",
+				"index": 3
 			},
 			{
 				"operation": "insert",
@@ -734,6 +779,16 @@ define("UsrRealty_FormPage", /**SCHEMA_DEPS*/["@creatio-devkit/common"]/**SCHEMA
 								}
 							}
 						}
+					},
+					"PDS_UsrComission_3leezdx": {
+						"modelConfig": {
+							"path": "PDS.UsrComission"
+						}
+					},
+					"PDS_UsrOfferTypeUsrCommissionPercent_5cni0sl": {
+						"modelConfig": {
+							"path": "PDS.UsrOfferTypeUsrCommissionPercent_5cni0sl"
+						}
 					}
 				}
 			},
@@ -774,7 +829,13 @@ define("UsrRealty_FormPage", /**SCHEMA_DEPS*/["@creatio-devkit/common"]/**SCHEMA
 					"PDS": {
 						"type": "crt.EntityDataSource",
 						"config": {
-							"entitySchemaName": "UsrRealty"
+							"entitySchemaName": "UsrRealty",
+							"attributes": {
+								"UsrOfferTypeUsrCommissionPercent_5cni0sl": {
+									"path": "UsrOfferType.UsrCommissionPercent",
+									"type": "ForwardReference"
+								}
+							}
 						},
 						"scope": "page"
 					},
@@ -807,9 +868,9 @@ define("UsrRealty_FormPage", /**SCHEMA_DEPS*/["@creatio-devkit/common"]/**SCHEMA
 		]/**SCHEMA_MODEL_CONFIG_DIFF*/,
 		handlers: /**SCHEMA_HANDLERS*/[
 			{
-	        request: "crt.HandleViewModelAttributeChangeRequest",
+		        request: "crt.HandleViewModelAttributeChangeRequest",
 	        
-	        handler: async (request, next) => {
+		        handler: async (request, next) => {
 
 	            if (request.attributeName === 'PDS_UsrPrice_4eso9rs') {
 
@@ -826,7 +887,22 @@ define("UsrRealty_FormPage", /**SCHEMA_DEPS*/["@creatio-devkit/common"]/**SCHEMA
 
 	            return next?.handle(request);
 		    }
-	      }
+	        },
+			{
+				request: "crt.HandleViewModelAttributeChangeRequest",
+				/* The custom implementation of the system query handler. */
+				handler: async (request, next) => {
+      					if (request.attributeName === 'PDS_UsrPrice_4eso9rs' || 				    // if price changed
+					   request.attributeName === 'PDS_UsrOfferTypeUsrCommissionPercent_5cni0sl' ) { // or percent changed
+						var price = await request.$context.PDS_UsrPrice_4eso9rs;
+						var percent = await request.$context.PDS_UsrOfferTypeUsrCommissionPercent_5cni0sl;
+						var commission = price * percent / 100;
+						request.$context.PDS_UsrComission_3leezdx = commission;
+					}
+					/* Call the next handler if it exists and return its result. */
+					return next?.handle(request);
+				}
+			}
 		]/**SCHEMA_HANDLERS*/,
 		converters: /**SCHEMA_CONVERTERS*/{}/**SCHEMA_CONVERTERS*/,
 		validators: /**SCHEMA_VALIDATORS*/{

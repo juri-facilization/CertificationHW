@@ -2,20 +2,13 @@
   "Descriptor": {
     "UId": "9bafc95d-9f10-874e-88aa-4abc439486e6",
     "Name": "UsrOfferType",
-    "ModifiedOnUtc": "\/Date(1753775744000)\/",
+    "ModifiedOnUtc": "\/Date(1753795410000)\/",
     "InstallType": 0,
     "Schema": {
       "UId": "b0134f11-9447-4899-b472-4708a1ea595c",
       "Name": "UsrOfferType"
     },
     "Columns": [
-      {
-        "ColumnUId": "736c30a7-c0ec-4fa9-b034-2552b319b633",
-        "IsForceUpdate": true,
-        "IsKey": false,
-        "ColumnName": "Name",
-        "DataTypeValueUId": "ddb3a1ee-07e8-4d62-b7a9-d0e618b00fbd"
-      },
       {
         "ColumnUId": "ae0e45ca-c495-4fe7-a39d-3ab7278e1617",
         "IsForceUpdate": false,
@@ -24,11 +17,25 @@
         "DataTypeValueUId": "23018567-a13c-4320-8687-fd6f9e3699bd"
       },
       {
+        "ColumnUId": "736c30a7-c0ec-4fa9-b034-2552b319b633",
+        "IsForceUpdate": true,
+        "IsKey": false,
+        "ColumnName": "Name",
+        "DataTypeValueUId": "ddb3a1ee-07e8-4d62-b7a9-d0e618b00fbd"
+      },
+      {
         "ColumnUId": "9e53fd7c-dde4-4502-a64c-b9e34148108b",
         "IsForceUpdate": true,
         "IsKey": false,
         "ColumnName": "Description",
         "DataTypeValueUId": "ddb3a1ee-07e8-4d62-b7a9-d0e618b00fbd"
+      },
+      {
+        "ColumnUId": "dabd5536-45b6-902f-301c-cda23714aff7",
+        "IsForceUpdate": true,
+        "IsKey": false,
+        "ColumnName": "UsrCommissionPercent",
+        "DataTypeValueUId": "5cc8060d-6d10-4773-89fc-8c12d6f659a6"
       }
     ]
   }
