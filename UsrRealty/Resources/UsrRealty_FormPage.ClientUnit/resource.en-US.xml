@@ -12,6 +12,7 @@
 			<Item Name="LocalizableStrings.GridDetailRefreshBtn_h2p3vi7_caption.Value" Value="Refresh" />
 			<Item Name="LocalizableStrings.GridDetailSearchFilter_69xpj89_placeholder.Value" Value="Search" />
 			<Item Name="LocalizableStrings.GridDetailSettingsBtn_kqe12tg_caption.Value" Value="Actions" />
+			<Item Name="LocalizableStrings.MustBeGreaterThanZero.Value" Value="Value must be greater than zero" />
 		</Items>
 	</Group>
 </Resources>
