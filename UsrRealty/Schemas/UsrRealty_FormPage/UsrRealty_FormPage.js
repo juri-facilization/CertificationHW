@@ -1,4 +1,4 @@
-define("UsrRealty_FormPage", /**SCHEMA_DEPS*/[]/**SCHEMA_DEPS*/, function/**SCHEMA_ARGS*/()/**SCHEMA_ARGS*/ {
+define("UsrRealty_FormPage", /**SCHEMA_DEPS*/["@creatio-devkit/common"]/**SCHEMA_DEPS*/, function/**SCHEMA_ARGS*/(sdk)/**SCHEMA_ARGS*/ {
 	return {
 		viewConfigDiff: /**SCHEMA_VIEW_CONFIG_DIFF*/[
 			{
@@ -283,7 +283,27 @@ define("UsrRealty_FormPage", /**SCHEMA_DEPS*/[]/**SCHEMA_DEPS*/, function/**SCHE
 			}
 		]/**SCHEMA_MODEL_CONFIG_DIFF*/,
 		handlers: /**SCHEMA_HANDLERS*/[
-			
+			{
+	        request: "crt.HandleViewModelAttributeChangeRequest",
+	        
+	        handler: async (request, next) => {
+
+	            if (request.attributeName === 'PDS_UsrPrice_4eso9rs') {
+
+					const sysSettingsService = new sdk.SysSettingsService();
+	                const price = await request.$context.PDS_UsrPrice_4eso9rs;
+					const sysSettingObject = await sysSettingsService.getByCode('MinPriceToRequireRealtyComment');
+
+	                if (price > sysSettingObject.value) {
+	                    request.$context.enableAttributeValidator('PDS_UsrComment_fbk8ft6', 'required');
+	                } else {
+	                    request.$context.disableAttributeValidator('PDS_UsrComment_fbk8ft6', 'required');
+	                }
+	            }
+
+	            return next?.handle(request);
+		    }
+	      }
 		]/**SCHEMA_HANDLERS*/,
 		converters: /**SCHEMA_CONVERTERS*/{}/**SCHEMA_CONVERTERS*/,
 		validators: /**SCHEMA_VALIDATORS*/{}/**SCHEMA_VALIDATORS*/
