@@ -2,6 +2,7 @@
 	<ItemGroup Label="Entity Files" Condition="'$(PkgPath)' != ''">
 		<Compile Include="$(PkgPath)/UsrRealty/Schemas/UsrOfferType/UsrOfferType.cs" Condition="Exists('$(PkgPath)/UsrRealty/Schemas/UsrOfferType/UsrOfferType.cs')" />
 		<Compile Include="$(PkgPath)/UsrRealty/Schemas/UsrRealty/UsrRealty.cs" Condition="Exists('$(PkgPath)/UsrRealty/Schemas/UsrRealty/UsrRealty.cs')" />
+		<Compile Include="$(PkgPath)/UsrRealty/Schemas/UsrRealtyVisit/UsrRealtyVisit.cs" Condition="Exists('$(PkgPath)/UsrRealty/Schemas/UsrRealtyVisit/UsrRealtyVisit.cs')" />
 		<Compile Include="$(PkgPath)/UsrRealty/Schemas/UsrType/UsrType.cs" Condition="Exists('$(PkgPath)/UsrRealty/Schemas/UsrType/UsrType.cs')" />
 	</ItemGroup>
 </Project>
