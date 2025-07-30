@@ -14,6 +14,7 @@
 			<Item Name="LocalizableStrings.GridDetailSettingsBtn_kqe12tg_caption.Value" Value="Actions" />
 			<Item Name="LocalizableStrings.MustBeGreaterThanZero.Value" Value="Value must be greater than zero" />
 			<Item Name="LocalizableStrings.NumberInput_ga3qgt6_label.Value" Value="Number" />
+			<Item Name="LocalizableStrings.RunGenerateVisitsProcessButton_caption.Value" Value="Generate visits" />
 		</Items>
 	</Group>
 </Resources>

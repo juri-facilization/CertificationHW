@@ -71,6 +71,34 @@ define("UsrRealty_FormPage", /**SCHEMA_DEPS*/["@creatio-devkit/common"]/**SCHEMA
 			},
 			{
 				"operation": "insert",
+				"name": "RunGenerateVisitsProcessButton",
+				"values": {
+					"type": "crt.Button",
+					"caption": "#ResourceString(RunGenerateVisitsProcessButton_caption)#",
+					"color": "default",
+					"disabled": false,
+					"size": "medium",
+					"iconPosition": "left-icon",
+					"visible": true,
+					"clicked": {
+						"request": "crt.RunBusinessProcessRequest",
+						"params": {
+							"processName": "UsrGenerateVisitsProcess",
+							"processRunType": "ForTheSelectedPage",
+							"saveAtProcessStart": true,
+							"showNotification": true,
+							"recordIdProcessParameterName": "ParentRealtyIdParameter"
+						}
+					},
+					"clickMode": "default",
+					"icon": "add-button-icon"
+				},
+				"parentName": "CardToggleContainer",
+				"propertyName": "items",
+				"index": 0
+			},
+			{
+				"operation": "insert",
 				"name": "UsrName",
 				"values": {
 					"layoutConfig": {
