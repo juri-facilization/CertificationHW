@@ -12,7 +12,7 @@
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
 		<DebugSymbols>false</DebugSymbols>
 		<DebugType>pdbonly</DebugType>
-		<Optimize>true</Optimize>
+		<Optimize>False</Optimize>
 		<MSBuildWarningsAsMessages>MSB3277;MSB3245;MSB3243</MSBuildWarningsAsMessages>
 		<NoWarn>CS1522,CS0162</NoWarn>
 	</PropertyGroup>

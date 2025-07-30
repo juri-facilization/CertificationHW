@@ -21,13 +21,15 @@ namespace Terrasoft.Configuration
                 return -1;
             }
 
-            string SaleOfferTypeId = "DCDAFD59-FB57-46ED-9C6E-0D931D0E54CC";
+            Guid realtyTypeGuid = new Guid(realtyTypeId);
+			string SaleOfferTypeId = "DCDAFD59-FB57-46ED-9C6E-0D931D0E54CC";
+			Guid saleOfferTypeGuid = new Guid(SaleOfferTypeId);
 
             Select select = new Select(UserConnection)
                 .Column(Func.Avg("UsrPrice"))
                 .From("UsrRealty")
-                .Where("UsrTypeId").IsEqual(Column.Parameter(new Guid(realtyTypeId)))
-                .And("UsrOfferTypeId").IsEqual(Column.Parameter(SaleOfferTypeId))
+                .Where("UsrTypeId").IsEqual(Column.Parameter(realtyTypeGuid))
+                .And("UsrOfferTypeId").IsEqual(Column.Parameter(saleOfferTypeGuid))
                 as Select;
             decimal result = select.ExecuteScalar<decimal>();
             return result;
